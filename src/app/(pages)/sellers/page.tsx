@@ -56,7 +56,7 @@ export default function SellersPage() {
               </div>
               <h3 className="text-xl font-serif mb-3">Lower Commissions</h3>
               <p className="text-gray-600 font-sans">
-                Our streamlined process allows us to charge just 1.5% commission instead of the traditional 6.5%, saving you thousands on your home sale.
+                Our streamlined process allows us to charge just 1.5% commission instead of the traditional 6%, saving you thousands on your home sale.
               </p>
             </div>
 
@@ -169,12 +169,20 @@ function NetProceedsCalculator() {
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>, setter: React.Dispatch<React.SetStateAction<number>>) => {
-    const value = e.target.value.replace(/[^0-9.]/g, '');
-    if (value === '') {
+    // Remove all non-numeric characters (except decimal point)
+    const rawValue = e.target.value.replace(/[^\d.]/g, '');
+    
+    if (rawValue === '') {
       setter(0);
     } else {
-      setter(Number(value));
+      // Convert to number and set the state
+      setter(parseFloat(rawValue));
     }
+  };
+
+  const formatNumberWithCommas = (value: number): string => {
+    if (value === 0) return '0';
+    return value.toLocaleString();
   };
 
   // Tooltip component
@@ -215,7 +223,7 @@ function NetProceedsCalculator() {
                 <input
                   type="text"
                   id="homeValueInput"
-                  value={homeValue.toLocaleString()}
+                  value={formatNumberWithCommas(homeValue)}
                   onChange={(e) => handleInputChange(e, setHomeValue)}
                   className="w-full pl-7 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#7C1E49] focus:border-transparent"
                 />
@@ -238,7 +246,7 @@ function NetProceedsCalculator() {
                 <input
                   type="text"
                   id="mortgageBalanceInput"
-                  value={mortgageBalance.toLocaleString()}
+                  value={formatNumberWithCommas(mortgageBalance)}
                   onChange={(e) => handleInputChange(e, setMortgageBalance)}
                   className="w-full pl-7 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#7C1E49] focus:border-transparent"
                 />
@@ -307,7 +315,7 @@ function NetProceedsCalculator() {
                 <input
                   type="text"
                   id="repairCostsInput"
-                  value={repairCosts.toLocaleString()}
+                  value={formatNumberWithCommas(repairCosts)}
                   onChange={(e) => handleInputChange(e, setRepairCosts)}
                   className="w-full pl-7 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#7C1E49] focus:border-transparent"
                 />
@@ -330,7 +338,7 @@ function NetProceedsCalculator() {
                 <input
                   type="text"
                   id="sellerConcessionsInput"
-                  value={sellerConcessions.toLocaleString()}
+                  value={formatNumberWithCommas(sellerConcessions)}
                   onChange={(e) => handleInputChange(e, setSellerConcessions)}
                   className="w-full pl-7 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#7C1E49] focus:border-transparent"
                 />

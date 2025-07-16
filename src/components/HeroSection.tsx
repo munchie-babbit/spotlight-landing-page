@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, Variants } from "framer-motion";
 
 interface Property {
   id: number;
@@ -122,13 +122,73 @@ export default function HeroSection({
     setCurrentIndex(index);
   };
 
+  // Animation variants
+  const fadeIn: Variants = {
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1, 
+      transition: { 
+        duration: 0.8, 
+        ease: "easeOut" 
+      } 
+    }
+  };
+  
+  const slideUp: Variants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { 
+        duration: 0.7, 
+        ease: "easeOut" 
+      } 
+    }
+  };
+  
+  const staggerChildren: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3,
+      }
+    }
+  };
+
+  const buttonAnimation: Variants = {
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: { 
+      opacity: 1, 
+      scale: 1, 
+      transition: { 
+        duration: 0.5, 
+        delay: 0.8, 
+        ease: [0.175, 0.885, 0.32, 1.275] 
+      } 
+    },
+    hover: { 
+      scale: 1.05,
+      boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.1)",
+      transition: { duration: 0.2 }
+    },
+    tap: { scale: 0.98 }
+  };
+
   return (
-    <div
+    <motion.div
+      initial="hidden"
+      animate="visible"
+      variants={fadeIn}
       className={`relative flex items-center ${height} w-full overflow-hidden bg-black`}
     >
       {disableCarousel ? (
         // Static hero with single background
-        <div className="absolute inset-0 w-full h-full">
+        <motion.div 
+          className="absolute inset-0 w-full h-full"
+          variants={fadeIn}
+        >
           <div
             className="absolute inset-0 w-full h-full bg-cover bg-center"
             style={{ backgroundImage: `url(${properties[0].backgroundImage})` }}
@@ -137,7 +197,7 @@ export default function HeroSection({
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/60 to-black/40"></div>
           {/* Additional top gradient for nav area */}
           <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/60 to-transparent"></div>
-        </div>
+        </motion.div>
       ) : (
         // Carousel with animated transitions
         <AnimatePresence mode="wait">
@@ -168,43 +228,78 @@ export default function HeroSection({
         </AnimatePresence>
       )}
 
-      <div className="container relative z-10 text-spotlight-maroon">
+      <motion.div 
+        className="container relative z-10 text-spotlight-maroon"
+        variants={staggerChildren}
+      >
         <div className="max-w-3xl flex flex-col gap-12">
-          <div className="flex flex-col gap-4">
-            <h1 className="text-4xl md:text-6xl font-serif text-white leading-loose md:leading-tight">
+          <motion.div className="flex flex-col gap-4">
+            <motion.h1 
+              className="text-4xl md:text-6xl font-serif text-white leading-normal md:leading-tight"
+              variants={slideUp}
+            >
               {title}
-            </h1>
-            <p className="text-xl text-white font-sans">{subtitle}</p>
-          </div>
+            </motion.h1>
+            <motion.p 
+              className="text-xl text-white font-sans"
+              variants={slideUp}
+            >
+              {subtitle}
+            </motion.p>
+          </motion.div>
 
           {buttonText && buttonLink && (
-            <a
+            <motion.a
               href={buttonLink}
               className="text-black bg-white rounded-full font-semibold px-6 py-4 font-sans w-fit"
+              variants={buttonAnimation}
+              initial="hidden"
+              animate="visible"
+              whileHover="hover"
+              whileTap="tap"
             >
               {buttonText}
-            </a>
+            </motion.a>
           )}
         </div>
-      </div>
+      </motion.div>
 
       {/* Property information */}
       {!disableCarousel && (
-        <div className="container absolute bottom-12 left-0 right-0 flex justify-between items-center px-4 sm:px-12">
-          <div className="text-white max-w-3xl flex flex-row">
+        <motion.div 
+          className="container absolute bottom-12 left-0 right-0 flex justify-between items-center px-4 sm:px-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1, duration: 0.6 }}
+        >
+          <motion.div 
+            className="text-white max-w-3xl flex flex-row"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 1.2, duration: 0.5 }}
+          >
             <p className="text-sm tracking-wider font-sans">
               {currentProperty.location}
             </p>
-          </div>
+          </motion.div>
 
-          <div className="flex items-center space-x-4">
+          <motion.div 
+            className="flex items-center space-x-4"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 1.2, duration: 0.5 }}
+          >
             {/* Navigation Rectangles with Progress Bar */}
             <div className="hidden md:flex space-x-2">
               {properties.map((_, index) => (
-                <div
+                <motion.div
                   key={index}
                   className="relative cursor-pointer"
                   onClick={() => goToSlide(index)}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 1.3 + index * 0.1, duration: 0.4 }}
+                  whileHover={{ scale: 1.1 }}
                 >
                   <div
                     className={`w-16 h-1.5 rounded-full ${
@@ -221,12 +316,12 @@ export default function HeroSection({
                       transition={{ duration: 0.1, ease: "linear" }}
                     />
                   )}
-                </div>
+                </motion.div>
               ))}
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       )}
-    </div>
+    </motion.div>
   );
 }

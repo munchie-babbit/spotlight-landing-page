@@ -5,7 +5,7 @@ import { useState } from 'react';
 export default function RentalIncomeCalculator() {
   const [rentalValue, setRentalValue] = useState(3000);
   const [vacancyRate, setVacancyRate] = useState(5);
-  const [propertyManagementFee, setPropertyManagementFee] = useState(1.5);
+  const [propertyManagementFee, setPropertyManagementFee] = useState(4);
   const [maintenanceCosts, setMaintenanceCosts] = useState(2);
   const [propertyTaxes, setPropertyTaxes] = useState(500);
   const [utilities, setUtilities] = useState(0);
@@ -13,7 +13,7 @@ export default function RentalIncomeCalculator() {
   const [traditionalExpanded, setTraditionalExpanded] = useState(false);
   
   // Calculate income
-  const traditionalManagementFee = rentalValue * (8 / 100);
+  const traditionalManagementFee = rentalValue * (10 / 100);
   const spotlightManagementFee = rentalValue * (propertyManagementFee / 100);
   const vacancyLoss = rentalValue * (vacancyRate / 100);
   const maintenanceCostsAmount = rentalValue * (maintenanceCosts / 100);
@@ -95,7 +95,7 @@ export default function RentalIncomeCalculator() {
                   <label htmlFor="vacancyRate" className="block text-gray-700 font-medium">
                     Vacancy Rate
                   </label>
-                  <Tooltip text="The percentage of time your property might be vacant between tenants. The industry average is 5-8%." />
+                  <Tooltip text="The percentage of time your property might be vacant between tenants. The industry average is 5-10%." />
                 </div>
                 <span className="text-gray-700 font-medium">{vacancyRate}% ({formatCurrency(vacancyLoss)})</span>
               </div>
@@ -118,7 +118,7 @@ export default function RentalIncomeCalculator() {
                   <label htmlFor="propertyManagementFee" className="block text-gray-700 font-medium">
                     Spotlight Management Fee
                   </label>
-                  <Tooltip text="The percentage fee paid to Spotlight Realty for managing your rental property. This is typically 1.5%, significantly lower than the traditional management fee of 8%." />
+                  <Tooltip text="The percentage fee paid to Spotlight Realty for managing your rental property. This is typically 4%, significantly lower than the traditional management fee of 10%." />
                 </div>
                 <span className="text-gray-700 font-medium">{propertyManagementFee}% ({formatCurrency(spotlightManagementFee)})</span>
               </div>
@@ -292,7 +292,7 @@ export default function RentalIncomeCalculator() {
                         <span className="font-medium">{formatCurrency(annualRentalIncome)}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-gray-600">Management Fee (8%)</span>
+                        <span className="text-gray-600">Management Fee (10%)</span>
                         <span className="font-medium text-red-600">-{formatCurrency(traditionalManagementFee * 12)}</span>
                       </div>
                       <div className="flex justify-between">

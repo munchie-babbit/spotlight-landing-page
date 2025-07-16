@@ -118,8 +118,9 @@ export default function Navbar() {
             scrolled 
               ? 'button-premium text-white border-0' 
               : 'text-white border-white/40 hover:bg-white hover:text-black'
-            } border rounded-full px-4 py-2 font-sans transition-colors`}>
+            } border rounded-full px-4 py-2 font-sans transition-colors relative`}>
             Get Started
+            <span className="absolute inset-0 bg-white opacity-0 hover:opacity-10 transition-opacity duration-300 rounded-full"></span>
           </button>
         </div>
 
@@ -161,8 +162,9 @@ export default function Navbar() {
                 scrolled 
                   ? 'button-premium text-white border-0' 
                   : 'text-white border border-white/40 hover:bg-white hover:text-black'
-                } rounded-full px-4 py-2 font-sans transition-colors w-full mt-2`}>
+                } rounded-full px-4 py-2 font-sans transition-colors w-full mt-2 relative`}>
                 Get Started
+                <span className="absolute inset-0 bg-white opacity-0 hover:opacity-10 transition-opacity duration-300 rounded-full"></span>
               </button>
             </div>
           </div>
