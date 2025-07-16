@@ -37,22 +37,14 @@ export default function AboutPage() {
             <div>
               <h2 className="text-3xl md:text-4xl font-serif mb-6">Our Story</h2>
               <p className="text-gray-700 font-sans mb-6">
-                Spotlight Realty was founded in 2020 with a simple mission: to make real estate transactions more efficient, transparent, and affordable. We recognized that the traditional real estate model was outdated and ripe for innovation.
+              As New York&apos;s first AI-powered real estate platform, Spotlight is transforming how properties are sold across New York City and Long Island. Our revolutionary approach cuts traditional commission rates from 6% down to just 1.5% for sellers and from 10% to 4% for landlords.
               </p>
               <p className="text-gray-700 font-sans mb-6">
-                By combining cutting-edge AI technology with the expertise of seasoned real estate professionals, we&apos;ve created a platform that streamlines the entire process—from listing to closing—while dramatically reducing costs for our clients.
-              </p>
-              <p className="text-gray-700 font-sans">
-                Today, we&apos;re proud to have helped thousands of homeowners sell their properties faster and with higher returns than traditional agencies, all while charging a fraction of the standard commission.
+              Our team is made up of builders, engineers, and entrepreneurs currently attending Cornell University — passionate about blending cutting-edge AI with real-world applications. We are committed to pushing the boundaries of what&apos;s possible and making real estate more accessible and efficient for everyone.
               </p>
             </div>
-            <div className="relative h-[400px] rounded-lg overflow-hidden shadow-xl">
-              <Image
-                src="/home6.jpg"
-                alt="Spotlight Realty Office"
-                fill
-                className="object-cover"
-              />
+            <div className="relative h-[400px] rounded-lg overflow-hidden shadow-xl bg-gray-200">
+              {/* Image goes here */}
             </div>
           </div>
         </div>
@@ -139,17 +131,12 @@ export default function AboutPage() {
       {/* Team Section */}
       <section className="py-16 bg-white">
         <div className="container">
-          <h2 className="text-3xl md:text-4xl font-serif mb-12 text-center">Meet Our Leadership</h2>
+          <h2 className="text-3xl md:text-4xl font-serif mb-12 text-center">Meet Our NYC Based Team</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="relative w-48 h-48 mx-auto mb-6 rounded-full overflow-hidden">
-                <Image
-                  src="/home1.jpg"
-                  alt="CEO Portrait"
-                  fill
-                  className="object-cover"
-                />
+              <div className="relative w-48 h-48 mx-auto mb-6 rounded-full overflow-hidden bg-gray-200">
+               {/* Image goes here */}
               </div>
               <h3 className="text-2xl font-serif mb-2">Sarah Johnson</h3>
               <p className="text-[#7C1E49] font-medium mb-4">CEO & Founder</p>
@@ -159,13 +146,8 @@ export default function AboutPage() {
             </div>
             
             <div className="text-center">
-              <div className="relative w-48 h-48 mx-auto mb-6 rounded-full overflow-hidden">
-                <Image
-                  src="/home2.jpg"
-                  alt="CTO Portrait"
-                  fill
-                  className="object-cover"
-                />
+              <div className="relative w-48 h-48 mx-auto mb-6 rounded-full overflow-hidden bg-gray-200">
+                {/* Image goes here */}
               </div>
               <h3 className="text-2xl font-serif mb-2">Michael Chen</h3>
               <p className="text-[#7C1E49] font-medium mb-4">CTO</p>
@@ -175,13 +157,8 @@ export default function AboutPage() {
             </div>
             
             <div className="text-center">
-              <div className="relative w-48 h-48 mx-auto mb-6 rounded-full overflow-hidden">
-                <Image
-                  src="/home3.jpg"
-                  alt="COO Portrait"
-                  fill
-                  className="object-cover"
-                />
+              <div className="relative w-48 h-48 mx-auto mb-6 rounded-full overflow-hidden bg-gray-200">
+                {/* Image goes here */}
               </div>
               <h3 className="text-2xl font-serif mb-2">Olivia Rodriguez</h3>
               <p className="text-[#7C1E49] font-medium mb-4">Chief Real Estate Officer</p>

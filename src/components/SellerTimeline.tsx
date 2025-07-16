@@ -6,15 +6,15 @@ import { Timeline } from "@/components/ui/timeline";
 export default function SellerTimeline() {
   const sellerJourney = [
     {
-      title: "Step 1: Initial Consultation",
+      title: "Step 1: Intake Form",
       description: "We assess your property and establish your selling goals",
+      image: "/onboarding-feature.png",
       content: (
         <div>
           <p className="mb-4 text-sm font-normal text-gray-700 md:text-base">
             Our AI-powered platform collects information about your property and
             your selling goals through a simple questionnaire. You&apos;ll
-            receive an initial valuation estimate and personalized selling
-            strategy.
+            receive an initial valuation estimate.
           </p>
           <div className="mb-6 rounded-lg bg-gray-50 p-4">
             <div className="flex items-center gap-2 text-sm text-gray-700">
@@ -36,6 +36,7 @@ export default function SellerTimeline() {
     {
       title: "Step 2: Preparation & Staging",
       description: "We help make your property look its absolute best",
+      image: "/home2.jpg",
       content: (
         <div>
           <p className="mb-4 text-sm font-normal text-gray-700 md:text-base">
@@ -64,6 +65,7 @@ export default function SellerTimeline() {
     {
       title: "Step 3: Market Listing",
       description: "Your property is showcased to the right buyers",
+      image: "/listing.png",
       content: (
         <div>
           <p className="mb-4 text-sm font-normal text-gray-700 md:text-base">
@@ -90,15 +92,15 @@ export default function SellerTimeline() {
       ),
     },
     {
-      title: "Step 4: Showings & Feedback",
+      title: "Step 4: Human Agent Showings",
       description: "We coordinate viewings and gather valuable insights",
+      image: "/tour.png",
       content: (
         <div>
           <p className="mb-4 text-sm font-normal text-gray-700 md:text-base">
             Our AI scheduling system manages viewing appointments efficiently,
             while screening potential buyers to ensure only serious prospects
-            visit your property. After each viewing, we collect and analyze
-            feedback to refine our selling strategy.
+            visit your property. Our human agents will then showcase your property to the buyer.
           </p>
           <div className="mb-6 rounded-lg bg-gray-50 p-4">
             <div className="flex items-center gap-2 text-sm text-gray-700">
@@ -120,6 +122,7 @@ export default function SellerTimeline() {
     {
       title: "Step 5: Offer Management",
       description: "We help you evaluate and negotiate the best offers",
+      image: "/offers-feature.png",
       content: (
         <div>
           <p className="mb-4 text-sm font-normal text-gray-700 md:text-base">
@@ -148,6 +151,7 @@ export default function SellerTimeline() {
     {
       title: "Step 6: Closing & Beyond",
       description: "We guide you through closing and your next steps",
+      image: "/key-handoff.png",
       content: (
         <div>
           <p className="mb-4 text-sm font-normal text-gray-700 md:text-base">

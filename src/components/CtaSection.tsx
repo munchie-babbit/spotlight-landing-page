@@ -11,7 +11,7 @@ interface CtaSectionProps {
 export default function CtaSection({
   title = "Ready to list?",
   subtitle = "Join thousands of satisfied homeowners who have successfully sold their properties with Spotlight Realty's AI-powered platform and expert human support.",
-  primaryButtonText = "Sell With Us",
+  primaryButtonText = "Create a Listing",
   primaryButtonLink = "/sellers",
   backgroundImage = "/cta-background.png",
 }: CtaSectionProps) {

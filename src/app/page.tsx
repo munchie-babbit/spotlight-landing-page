@@ -3,8 +3,9 @@
 import { useState } from "react";
 import HeroSection from "@/components/HeroSection";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import CtaSection from "@/components/CtaSection";
+import { EyeIcon } from "lucide-react";
 
 export default function HomePage() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -20,11 +21,10 @@ export default function HomePage() {
         "Quickly onboard and get your property listed with our 4-minute intake process.",
       bulletPoints: [
         "Complete a simple questionnaire about your property",
-        "AI analyzes your responses to create a tailored strategy",
         "Receive an instant property valuation estimate",
       ],
       icon: "/file.svg",
-      image: "/home1.jpg",
+      image: "/onboarding-feature.png",
     },
     {
       id: "staging",
@@ -32,9 +32,8 @@ export default function HomePage() {
       description:
         "Our professionals prepare your property to look its absolute best for potential buyers.",
       bulletPoints: [
-        "Professional photography and virtual tour creation",
-        "Guidance on furniture arrangement and decor",
-        "Targeted improvements to increase property value",
+        "Free included photography and virtual tour creation",
+        "Free included home staging service",
       ],
       icon: "/window.svg",
       image: "/home2.jpg",
@@ -46,11 +45,10 @@ export default function HomePage() {
         "Your property is listed across multiple platforms with professional materials.",
       bulletPoints: [
         "Distribution to all major real estate platforms",
-        "SEO-optimized listing with professional photos",
         "AI-powered targeting to reach qualified buyers",
       ],
       icon: "/globe.svg",
-      image: "/home3.jpg",
+      image: "/listing.png",
     },
     {
       id: "showings",
@@ -60,10 +58,9 @@ export default function HomePage() {
       bulletPoints: [
         "Automatic screening of potential buyers",
         "Convenient scheduling with digital calendar",
-        "Detailed feedback collection after each viewing",
       ],
       icon: "/file.svg",
-      image: "/home4.jpg",
+      image: "/tour.png",
     },
     {
       id: "offers",
@@ -73,10 +70,9 @@ export default function HomePage() {
       bulletPoints: [
         "Side-by-side offer comparison tools",
         "AI analysis of terms and contingencies",
-        "Negotiation guidance from expert agents",
       ],
       icon: "/file.svg",
-      image: "/home5.jpg",
+      image: "/offers-feature.png",
     },
     {
       id: "closing",
@@ -86,52 +82,18 @@ export default function HomePage() {
       bulletPoints: [
         "Digital document preparation and e-signatures",
         "Coordination with all parties involved",
-        "Secure fund transfer and escrow management",
       ],
       icon: "/window.svg",
-      image: "/home6.jpg",
-    },
-  ];
-
-  const serviceSteps = [
-    {
-      id: 1,
-      title: "Listing Info",
-      description: "Complete the listing information.",
-      status: "active",
-      icon: "/file.svg",
-      buttonText: "Start Now",
-    },
-    {
-      id: 2,
-      title: "Availability",
-      description: 'Complete "Listing Info" first to unlock this step.',
-      status: "blocked",
-      icon: "/globe.svg",
-    },
-    {
-      id: 3,
-      title: "Documents",
-      description: 'Complete "Listing Info" first to unlock this step.',
-      status: "blocked",
-      icon: "/file.svg",
-    },
-    {
-      id: 4,
-      title: "Identity Verification",
-      description:
-        "Identity verification has already been completed for your account.",
-      status: "completed",
-      icon: "/window.svg",
+      image: "/key-handoff.png",
     },
   ];
 
   const featuredProperties = [
     {
       id: 1,
-      image: "/listing1.png",
+      image: "",
       price: "$2,300,000",
-      address: "House on Long Island, NY",
+      address: "Penthouse in New York, NY",
       bedrooms: 4,
       bathrooms: 3.5,
       sqft: 3200,
@@ -139,9 +101,9 @@ export default function HomePage() {
     },
     {
       id: 2,
-      image: "/listing2.png",
+      image: "",
       price: "$1,227,992",
-      address: "Villa in Santo Isidoro, Portugal",
+      address: "Condo in New York, NY",
       bedrooms: 3,
       bathrooms: 2,
       sqft: 2800,
@@ -149,9 +111,9 @@ export default function HomePage() {
     },
     {
       id: 3,
-      image: "/home3.jpg",
+      image: "",
       price: "$25,729,369",
-      address: "Villa in Bel Ombre, Mauritius",
+      address: "Villa in New York, NY",
       bedrooms: 5,
       bathrooms: 4,
       sqft: 4000,
@@ -159,9 +121,9 @@ export default function HomePage() {
     },
     {
       id: 4,
-      image: "/home4.jpg",
+      image: "",
       price: "$947,308",
-      address: "House in Briennon, France",
+      address: "Penthouse in New York, NY",
       bedrooms: 4,
       bathrooms: 2.5,
       sqft: 3000,
@@ -169,9 +131,9 @@ export default function HomePage() {
     },
     {
       id: 5,
-      image: "/listing1.png",
+      image: "",
       price: "$7,995,000",
-      address: "House in Greenwich, Connecticut",
+      address: "Penthouse in New York, NY",
       bedrooms: 6,
       bathrooms: 5,
       sqft: 5200,
@@ -179,7 +141,7 @@ export default function HomePage() {
     },
     {
       id: 6,
-      image: "/listing2.png",
+      image: "/",
       price: "$3,450,000",
       address: "Villa in Miami, Florida",
       bedrooms: 4,
@@ -239,7 +201,7 @@ export default function HomePage() {
       id: "savings",
       question: "How does Spotlight save me money?",
       answer:
-        "By leveraging AI to automate routine tasks and streamline the selling process, we're able to reduce commission fees by up to 75% compared to traditional brokerages, without sacrificing quality of service or results.",
+        "By leveraging AI to automate routine tasks and streamline the selling process, we're able to reduce commission fees from 6% to 1.5% compared to traditional brokerages, without sacrificing quality of service or results.",
     },
     {
       id: "security",
@@ -270,7 +232,8 @@ export default function HomePage() {
     },
     {
       id: "virtual-tours",
-      question: "Can I offer virtual tours of my property to potential renters?",
+      question:
+        "Can I offer virtual tours of my property to potential renters?",
       answer:
         "Yes! You can upload virtual tours or request our team to create a professional 3D tour for your listing. Virtual tours help attract more qualified renters and reduce unnecessary in-person showings.",
     },
@@ -301,8 +264,8 @@ export default function HomePage() {
   return (
     <>
       <HeroSection
-        title="Sell your home for more"
-        subtitle="Save 75% on agent fees when you sell or lease with Spotlight"
+        title="Non-stop real estate agents for the sleepless city"
+        subtitle="Save on costs while increasing visibility with our AI-powered real estate platform"
         buttonText="Create a Listing Now"
         buttonLink="/sellers"
         properties={carouselProperties}
@@ -337,19 +300,16 @@ export default function HomePage() {
                   } cursor-pointer transition-all duration-300 hover:shadow-lg`}
                   onClick={() => setActiveProcessTab(index)}
                 >
-                  <div className="relative h-20 w-full bg-[#7C1E49]">
-                    {/* <Image
+                  <div className="relative h-48 w-full bg-[#7C1E49]">
+                    <Image
                       src={tab.image}
                       alt={tab.title}
                       fill
-                      className="object-cover"
-                    /> */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#968F62]/30 to-transparent"></div>
-                    <div className="absolute bottom-4 left-4 text-white">
-                      <h3 className="text-2xl font-serif">{tab.title}</h3>
-                    </div>
+                      className="object-cover w-full h-full"
+                    />
                   </div>
                   <div className="p-6">
+                    <h3 className="text-2xl font-serif mb-4">{tab.title}</h3>
                     <div
                       className={`h-1 w-16 ${
                         activeProcessTab === index
@@ -460,12 +420,18 @@ export default function HomePage() {
                   <div key={property.id} className="group cursor-pointer">
                     <div className="relative h-64 mb-3 overflow-hidden rounded-lg">
                       <div className="absolute inset-0 bg-gray-200">
-                        <Image
-                          src={property.image}
-                          alt={property.address}
-                          fill
-                          className="object-cover transition-transform duration-300 group-hover:scale-105"
-                        />
+                        {property.image ? (
+                          <Image
+                            src={property.image}
+                            alt={property.address}
+                            fill
+                            className="object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
+                        ) : (
+                          <div className="absolute inset-0 bg-gray-200 flex items-center justify-center">
+                            <p className="text-gray-500">No image available</p>
+                          </div>
+                        )}
                       </div>
 
                       {/* View count */}
@@ -568,7 +534,7 @@ export default function HomePage() {
               </div>
               <div className="flex items-center justify-center h-20">
                 <Image
-                  src="/compass.png"
+                  src="/apartmentscom-logo.png"
                   alt="Facebook"
                   width={120}
                   height={60}
@@ -627,7 +593,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Manage To-dos Card */}
+        {/* List your property card*/}
         <section className="relative pt-4 pb-24">
           <div className="container relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-12">
@@ -635,125 +601,111 @@ export default function HomePage() {
               <div className="col-span-1 lg:col-span-7">
                 <div className="bg-white rounded-lg shadow-lg p-8 md:p-10">
                   <h3 className="text-2xl md:text-3xl font-serif mb-6 text-black">
-                    Manage your to-dos
+                    List your property in 5 minutes
                   </h3>
                   <p className="text-gray-700 font-sans mb-8">
-                    Our intelligent task management system keeps track of all
-                    the important steps in your home selling journey. From
-                    listing preparation to closing documents, we&apos;ll guide
-                    you through each task with clear instructions and timely
-                    reminders.
+                    Our streamlined process helps you list your property quickly
+                    and efficiently. Answer a few simple questions about your
+                    property and we&apos;ll handle the rest.
                   </p>
 
-                  <div className="flex flex-wrap gap-4">
-                    {serviceSteps.map((step) => (
-                      <div
-                        key={step.id}
-                        className={`border rounded-lg p-6 relative bg-white flex-1 min-w-[240px] border-gray-200`}
-                      >
-                        {step.status === "active" && (
-                          <div className="absolute top-4 right-4 bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">
-                            Next
-                          </div>
-                        )}
+                  <div className="border-gray-200 border rounded-lg overflow-hidden shadow-sm">
+                    <div className="bg-gray-50 p-4 border-gray-200 border-b">
+                      <h4 className="font-serif text-lg flex items-center">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-5 w-5 mr-2 text-[#7C1E49]"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+                          />
+                        </svg>
+                        Property Information
+                      </h4>
+                    </div>
 
-                        {step.status === "blocked" && (
-                          <div className="absolute top-4 right-4 bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded">
-                            Blocked
+                    <div className="p-6">
+                      <div className="mb-6">
+                        <h5 className="font-medium mb-3">
+                          What type of property are you selling?
+                        </h5>
+                        <div className="grid grid-cols-2 gap-4">
+                          <div className="rounded-lg p-4 bg-[#7C1E49]/5 shadow-sm hover:shadow-md transition-shadow">
+                            <div className="flex items-center mb-2">
+                              <div className="w-5 h-5 rounded-full border-2 border-[#7C1E49] flex items-center justify-center mr-2">
+                                <div className="w-2.5 h-2.5 rounded-full bg-[#7C1E49]"></div>
+                              </div>
+                              <span className="font-medium">
+                                Single-family House
+                              </span>
+                            </div>
+                            <p className="text-sm text-gray-600 pl-7">
+                              Standalone home on its own lot
+                            </p>
                           </div>
-                        )}
 
-                        {step.status === "completed" && (
-                          <div className="absolute top-4 right-4 bg-green-100 text-green-800 text-xs px-2 py-1 rounded">
-                            Completed
+                          <div className="rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
+                            <div className="flex items-center mb-2">
+                              <div className="w-5 h-5 rounded-full border-2 border-gray-300 mr-2"></div>
+                              <span className="font-medium">
+                                Multi-family House
+                              </span>
+                            </div>
+                            <p className="text-sm text-gray-600 pl-7">
+                              Duplex, triplex, or fourplex
+                            </p>
                           </div>
-                        )}
+                        </div>
+                      </div>
 
-                        <div className="flex items-center mb-4">
-                          <div
-                            className={`w-10 h-10 rounded-full flex items-center justify-center mr-3 ${
-                              step.status === "active"
-                                ? "bg-gray-100 !text-white "
-                                : step.status === "completed"
-                                ? "bg-green-100"
-                                : "bg-gray-100"
-                            }`}
-                          >
-                            <Image
-                              src={step.icon}
-                              alt={step.title}
-                              width={20}
-                              height={20}
-                            />
+                      <div className="grid grid-cols-2 gap-4">
+                        <div className="rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
+                          <div className="flex items-center mb-2">
+                            <div className="w-5 h-5 rounded-full border-2 border-gray-300 mr-2"></div>
+                            <span className="font-medium">Condominium</span>
                           </div>
-                          <h4 className="text-lg font-serif">{step.title}</h4>
+                          <p className="text-sm text-gray-600 pl-7">
+                            Unit in a shared building
+                          </p>
                         </div>
 
-                        <p className="text-gray-600 font-sans mb-4 text-sm">
-                          {step.description}
-                        </p>
-
-                        {step.status === "active" && step.buttonText && (
-                          <button className="text-[#7C1E49] font-sans flex items-center text-sm font-medium">
-                            {step.buttonText}
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              className="h-4 w-4 ml-1"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M9 5l7 7-7 7"
-                              />
-                            </svg>
-                          </button>
-                        )}
-
-                        {step.status === "blocked" && (
-                          <div className="flex items-center text-orange-500 font-sans text-sm">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              className="h-4 w-4 mr-1"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M12 15v2m0 0v2m0-2h2m-2 0H9"
-                              />
-                            </svg>
-                            Blocked
+                        <div className="rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
+                          <div className="flex items-center mb-2">
+                            <div className="w-5 h-5 rounded-full border-2 border-gray-300 mr-2"></div>
+                            <span className="font-medium">Co-operative</span>
                           </div>
-                        )}
-
-                        {step.status === "completed" && (
-                          <div className="flex items-center text-green-600 font-sans text-sm">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              className="h-4 w-4 mr-1"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M5 13l4 4L19 7"
-                              />
-                            </svg>
-                            Already Completed
-                          </div>
-                        )}
+                          <p className="text-sm text-gray-600 pl-7">
+                            Shares in a housing corporation
+                          </p>
+                        </div>
                       </div>
-                    ))}
+
+                      <div className="mt-8 flex justify-end">
+                        <button className="bg-[#7C1E49] text-white px-6 py-3 rounded-full font-sans flex items-center">
+                          Continue
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-5 w-5 ml-2"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M9 5l7 7-7 7"
+                            />
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -769,7 +721,7 @@ export default function HomePage() {
               <div className="col-span-1 lg:col-span-7">
                 <div className="bg-white rounded-lg shadow-lg p-8 md:p-10">
                   <h3 className="text-2xl md:text-3xl font-serif mb-6 text-black">
-                    Manage your appointments
+                    View your upcoming appointments
                   </h3>
                   <p className="text-gray-700 font-sans mb-8">
                     Our smart scheduling system helps you manage property
@@ -896,7 +848,7 @@ export default function HomePage() {
               <div className="col-span-1 lg:col-span-7">
                 <div className="bg-white rounded-lg shadow-lg p-8 md:p-10">
                   <h2 className="text-2xl md:text-3xl font-serif mb-6 text-black">
-                    Real human agents, always available
+                    Talk to a real human agent anytime
                   </h2>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
@@ -910,9 +862,33 @@ export default function HomePage() {
 
                       <div className="flex items-center p-4 bg-gray-50 rounded-lg mb-6">
                         <div className="flex -space-x-2 mr-4">
-                          <div className="w-10 h-10 rounded-full bg-[#7C1E49]/20 border-2 border-white"></div>
-                          <div className="w-10 h-10 rounded-full bg-[#7C1E49]/30 border-2 border-white"></div>
-                          <div className="w-10 h-10 rounded-full bg-[#7C1E49]/40 border-2 border-white"></div>
+                          <div className="w-10 h-10 rounded-full bg-[#7C1E49]/20 border-2 border-white overflow-hidden">
+                            <Image
+                              src="/agent1.png"
+                              alt="Agent 1"
+                              width={40}
+                              height={40}
+                              className="object-cover w-full h-full"
+                            />
+                          </div>
+                          <div className="w-10 h-10 rounded-full bg-[#7C1E49]/30 border-2 border-white overflow-hidden">
+                            <Image
+                              src="/agent2.png"
+                              alt="Agent 2"
+                              width={40}
+                              height={40}
+                              className="object-cover w-full h-full"
+                            />
+                          </div>
+                          <div className="w-10 h-10 rounded-full bg-[#7C1E49]/40 border-2 border-white overflow-hidden">
+                            <Image
+                              src="/agent3.png"
+                              alt="Agent 3"
+                              width={40}
+                              height={40}
+                              className="object-cover w-full h-full"
+                            />
+                          </div>
                         </div>
                         <div>
                           <p className="font-medium text-gray-900 font-sans">
@@ -1028,12 +1004,12 @@ export default function HomePage() {
         <div className="container">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-serif mb-4">
-              Discover what makes our selling experience different
+              Discover what makes our listing experience different
             </h2>
             <p className="text-gray-700 font-sans max-w-3xl mx-auto">
               Spotlight Realty combines cutting-edge AI technology with
               personalized service to create a seamless, efficient, and
-              profitable home selling experience.
+              profitable home listing experience.
             </p>
           </div>
 
@@ -1048,7 +1024,7 @@ export default function HomePage() {
             >
               <div className="relative h-64">
                 <Image
-                  src="/onboarding-feature.png"
+                  src="/communication.png"
                   alt="Lower Fees"
                   fill
                   className="object-cover"
@@ -1056,29 +1032,113 @@ export default function HomePage() {
               </div>
               <div className="p-6 flex flex-col flex-grow">
                 <div className="w-12 h-12 bg-[#7C1E49]/10 rounded-full flex items-center justify-center mb-4">
-                <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-6 w-6 text-[#7C1E49]"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M13 10V3L4 14h7v7l9-11h-7z"
-                      />
-                    </svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6 text-[#7C1E49]"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
+                    />
+                  </svg>
                 </div>
                 <h3 className="text-xl font-serif mb-3">
-                  Lightning Fast Onboarding
+                  AI-Powered Communication
                 </h3>
                 <p className="text-gray-600 font-sans">
-                  Get your listing live in just 4 minutes with our streamlined
-                  onboarding process. Reach millions of potential buyers
-                  instantly—no waiting, no hassle, just results.
+                  Our AI assistant handles all inquiries from potential buyers and tenants 24/7, answering questions, scheduling viewings, and collecting feedback without you lifting a finger.
                 </p>
+                <div className="mt-4 space-y-3">
+                  <div className="flex items-start">
+                    <div className="text-[#7C1E49] mr-3 mt-0.5">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-4 w-4"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M5 13l4 4L19 7"
+                        />
+                      </svg>
+                    </div>
+                    <span className="text-gray-600 font-sans text-sm">
+                      Instant responses to inquiries 24/7
+                    </span>
+                  </div>
+                  <div className="flex items-start">
+                    <div className="text-[#7C1E49] mr-3 mt-0.5">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-4 w-4"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M5 13l4 4L19 7"
+                        />
+                      </svg>
+                    </div>
+                    <span className="text-gray-600 font-sans text-sm">
+                      Automated scheduling for property viewings
+                    </span>
+                  </div>
+                  <div className="flex items-start">
+                    <div className="text-[#7C1E49] mr-3 mt-0.5">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-4 w-4"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M5 13l4 4L19 7"
+                        />
+                      </svg>
+                    </div>
+                    <span className="text-gray-600 font-sans text-sm">
+                      Intelligent qualification of serious buyers
+                    </span>
+                  </div>
+                  <div className="flex items-start">
+                    <div className="text-[#7C1E49] mr-3 mt-0.5">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-4 w-4"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M5 13l4 4L19 7"
+                        />
+                      </svg>
+                    </div>
+                    <span className="text-gray-600 font-sans text-sm">
+                      Detailed feedback collection after viewings
+                    </span>
+                  </div>
+                </div>
               </div>
             </motion.div>
 
@@ -1093,35 +1153,23 @@ export default function HomePage() {
               <div className="flex flex-col md:flex-row h-full">
                 <div className="md:w-2/5 relative h-48 md:h-auto">
                   <Image
-                    src="/offers-feature.png"
-                    alt="Negotiate Multiple Offers"
+                    src="/document.png"
+                    alt="AI Screening"
                     fill
                     className="object-cover"
                   />
                 </div>
                 <div className="md:w-1/2 p-6 flex flex-col justify-center">
                   <div className="w-12 h-12 bg-[#7C1E49]/10 rounded-full flex items-center justify-center mb-4">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-6 w-6 text-[#7C1E49]"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M17 9V7a5 5 0 00-10 0v2a2 2 0 00-2 2v6a2 2 0 002 2h12a2 2 0 002-2v-6a2 2 0 00-2-2zm-6 4h4m-2-2v4"
-                      />
-                    </svg>
+                    <EyeIcon className="h-6 w-6 text-[#7C1E49]" />
                   </div>
                   <h3 className="text-xl font-serif mb-3">
-                    Negotiate Multiple Offers
+                    AI Screening & Document Review
                   </h3>
                   <p className="text-gray-600 font-sans">
-                    Easily review, compare, and negotiate multiple offers at once. Accept, counter, or decline each offer directly from your dashboard.
+                    Our AI automatically screens potential buyers and tenants, verifying their financial qualifications and reviewing documents to save you time and reduce risk.
                   </p>
+                  
                 </div>
               </div>
             </motion.div>
@@ -1137,8 +1185,8 @@ export default function HomePage() {
               <div className="flex flex-col md:flex-row h-full">
                 <div className="md:w-2/5 relative h-48 md:h-auto">
                   <Image
-                    src="/staging-feature.jpg"
-                    alt="Listing Insights"
+                    src="/generation.png"
+                    alt="Document Generation"
                     fill
                     className="object-cover"
                   />
@@ -1156,14 +1204,15 @@ export default function HomePage() {
                         strokeLinecap="round"
                         strokeLinejoin="round"
                         strokeWidth={2}
-                        d="M9 17v-2a4 4 0 018 0v2M5 10a7 7 0 0114 0v2a7 7 0 01-14 0v-2zm7 8v.01"
+                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                       />
                     </svg>
                   </div>
-                  <h3 className="text-xl font-serif mb-3">Free Home Staging</h3>
+                  <h3 className="text-xl font-serif mb-3">Automated Document Generation</h3>
                   <p className="text-gray-600 font-sans">
-                  Our home staging service helps you showcase your property at its best. We’ll provide expert recommendations to make your home stand out and appeal to potential buyers.
+                    Our AI creates legally-compliant leases and other real estate documents tailored to your property and local regulations, saving you time and legal expenses.
                   </p>
+                  
                 </div>
               </div>
             </motion.div>
@@ -1178,17 +1227,7 @@ export default function HomePage() {
             >
               <div className="flex flex-col md:flex-row h-full">
                 <div className="relative md:w-1/2 h-48 md:h-auto">
-                  <iframe
-                    width="100%"
-                    height="480"
-                    frameBorder="0"
-                    allow="xr-spatial-tracking; gyroscope; accelerometer"
-                    allowFullScreen={true}
-                    scrolling="no"
-                    src="https://kuula.co/share/collection/71KKh?logo=0&amp;info=0&amp;fs=1&amp;vr=1&amp;sd=1&amp;thumbs=1"
-                    title="Interactive 360° Virtual Tour"
-                    className="jsx-ef0774e92723c1d w-full"
-                  ></iframe>
+                  {/* 360° Virtual Tour IFrame goes here */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                 </div>
                 <div className="md:w-3/5 p-6 flex flex-col justify-center">
@@ -1208,20 +1247,22 @@ export default function HomePage() {
                       />
                     </svg>
                   </div>
-                  <h3 className="text-xl font-serif mb-3">Free Interactive 360° Virtual Tours</h3>
+                  <h3 className="text-xl font-serif mb-3">
+                    Free Interactive 360° Virtual Tour & Home Staging For Sellers
+                  </h3>
                   <p className="text-gray-600 font-sans">
                     Professional photography and 3D virtual tours help showcase
                     your property to potential buyers worldwide, allowing them
                     to explore every detail from anywhere.
                   </p>
-                <a
-                  href="https://www.hometrack.net/blog/how-does-matterport-work"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-fit mt-4 inline-block text-[#7C1E49] bg-white border border-spotlight-maroon rounded-full font-semibold px-6 py-3 font-sans transition-colors duration-200 hover:bg-[#5a1533]"
-                >
-                  Learn more about Matterport
-                </a>
+                  <a
+                    href="https://www.hometrack.net/blog/how-does-matterport-work"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-fit mt-4 inline-block text-[#7C1E49] bg-white border border-spotlight-maroon rounded-full font-semibold px-6 py-3 font-sans transition-colors duration-200 hover:bg-[#5a1533]"
+                  >
+                    Learn more about Matterport
+                  </a>
                 </div>
               </div>
             </motion.div>
@@ -1230,30 +1271,47 @@ export default function HomePage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-16 bg-gray-100">
-        <div className="container">
-          <div className="mb-12 text-center">
-            <h2 className="text-3xl md:text-4xl font-serif mb-6">FAQ</h2>
-            <p className="text-gray-700 font-sans max-w-3xl mx-auto">
+      <section className="py-16 relative overflow-hidden">
+        {/* Gradient Background Elements */}
+        <div className="absolute top-0 left-0 w-64 h-64 rounded-full bg-[#7C1E49]/5 -translate-x-1/2 -translate-y-1/2 blur-3xl"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full bg-[#968F62]/10 translate-x-1/3 translate-y-1/3 blur-3xl"></div>
+
+        <div className="container relative z-10">
+          <div className="mb-16 text-center">
+            <h2 className="text-3xl md:text-4xl font-serif mb-6 relative inline-block">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-gray-700 font-sans max-w-3xl mx-auto mt-6">
               Answers to common questions about Spotlight. For all other
-              inquires email us at <span className="text-[#7C1E49]">agent@spotlight.realty</span>.
+              inquiries email us at{" "}
+              <a
+                href="mailto:agent@spotlight.realty"
+                className="text-[#7C1E49] font-medium hover:underline"
+              >
+                agent@spotlight.realty
+              </a>
+              .
             </p>
           </div>
 
-          <div className="max-w-3xl mx-auto">
-            <div className="flex justify-center space-x-8 mb-10 border-b border-gray-200">
+          <div className="max-w-4xl mx-auto">
+            <div className="flex justify-center space-x-4 md:space-x-8 mb-12 relative">
+              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gray-200 rounded-full"></div>
               <button
                 onClick={() => {
                   setActiveTab("sellers");
                   setActiveFaqIndex(0);
                 }}
-                className={`pb-4 px-4 text-lg font-serif ${
+                className={`pb-4 px-4 text-lg font-serif relative ${
                   activeTab === "sellers"
-                    ? "text-[#7C1E49] border-b-2 border-[#7C1E49]"
+                    ? "text-[#7C1E49]"
                     : "text-black hover:text-[#7C1E49]"
                 } transition-colors`}
               >
                 For Sellers
+                {activeTab === "sellers" && (
+                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-[#7C1E49] rounded-full"></div>
+                )}
               </button>
 
               <button
@@ -1261,111 +1319,180 @@ export default function HomePage() {
                   setActiveTab("landlords");
                   setActiveFaqIndex(0);
                 }}
-                className={`pb-4 px-4 text-lg font-serif ${
+                className={`pb-4 px-4 text-lg font-serif relative ${
                   activeTab === "landlords"
-                    ? "text-[#7C1E49] border-b-2 border-[#7C1E49]"
+                    ? "text-[#7C1E49]"
                     : "text-black hover:text-[#7C1E49]"
                 } transition-colors`}
               >
                 For Landlords
+                {activeTab === "landlords" && (
+                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#7C1E49] to-[#968F62] rounded-full"></div>
+                )}
               </button>
             </div>
 
-            {activeTab === "sellers" && (
-              <div>
-                <div className="space-y-4">
-                  {sellerFaqs.map((faq, index) => (
-                    <div
-                      key={faq.id}
-                      className={`bg-white rounded-lg shadow-md border p-6 cursor-pointer transition-all duration-300 hover:shadow-lg ${
-                        activeFaqIndex === index && activeTab === "sellers"
-                          ? "border-[#7C1E49]"
-                          : "border-gray-200 hover:border-[#7C1E49]"
-                      }`}
-                      onClick={() => setActiveFaqIndex(index)}
-                    >
-                      <div className="flex justify-between items-start">
-                        <h4 className="text-lg font-serif font-medium text-black">
-                          {faq.question}
-                        </h4>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className={`h-6 w-6 text-[#7C1E49] transition-transform duration-300 ${
-                            activeFaqIndex === index && activeTab === "sellers"
-                              ? "rotate-180"
-                              : ""
-                          }`}
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M19 9l-7 7-7-7"
-                          />
-                        </svg>
-                      </div>
-
-                      {activeFaqIndex === index && activeTab === "sellers" && (
-                        <div className="mt-4 text-gray-700 font-sans animate-fadeIn">
-                          {faq.answer}
+            <AnimatePresence mode="wait">
+              {activeTab === "sellers" && (
+                <motion.div
+                  key="sellers"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div className="space-y-6">
+                    {sellerFaqs.map((faq, index) => (
+                      <motion.div
+                        key={faq.id}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: index * 0.1 }}
+                        className={`bg-white rounded-xl shadow-md border p-6 cursor-pointer ${
+                          activeFaqIndex === index && activeTab === "sellers"
+                            ? "border-transparent bg-gradient-to-br from-white to-[#7C1E49]/5 shadow-lg"
+                            : "border-gray-200 hover:border-[#7C1E49]/30"
+                        }`}
+                        onClick={() => setActiveFaqIndex(index)}
+                      >
+                        <div className="flex justify-between items-start">
+                          <h4
+                            className={`text-lg font-serif font-medium ${
+                              activeFaqIndex === index &&
+                              activeTab === "sellers"
+                                ? "text-[#7C1E49]"
+                                : "text-black"
+                            }`}
+                          >
+                            {faq.question}
+                          </h4>
+                          <div
+                            className={`flex items-center justify-center w-8 h-8 rounded-full ${
+                              activeFaqIndex === index &&
+                              activeTab === "sellers"
+                                ? "bg-[#7C1E49] text-white"
+                                : "bg-gray-100 text-gray-500"
+                            }`}
+                          >
+                            <motion.svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="h-4 w-4"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                              animate={{
+                                rotate: activeFaqIndex === index ? 180 : 0,
+                              }}
+                              transition={{ duration: 0.2 }}
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M19 9l-7 7-7-7"
+                              />
+                            </motion.svg>
+                          </div>
                         </div>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
 
-            {activeTab === "landlords" && (
-              <div>
-                <div className="space-y-4">
-                  {landlordFaqs.map((faq, index) => (
-                    <div
-                      key={faq.id}
-                      className={`bg-white rounded-lg shadow-md border p-6 cursor-pointer transition-all duration-300 hover:shadow-lg ${
-                        activeFaqIndex === index && activeTab === "landlords"
-                          ? "border-[#7C1E49]"
-                          : "border-gray-200 hover:border-[#7C1E49]"
-                      }`}
-                      onClick={() => setActiveFaqIndex(index)}
-                    >
-                      <div className="flex justify-between items-start">
-                        <h4 className="text-lg font-serif font-medium text-black">
-                          {faq.question}
-                        </h4>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className={`h-6 w-6 text-[#7C1E49] transition-transform duration-300 ${
-                            activeFaqIndex === index && activeTab === "landlords"
-                              ? "rotate-180"
-                              : ""
-                          }`}
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M19 9l-7 7-7-7"
-                          />
-                        </svg>
-                      </div>
+                        {activeFaqIndex === index &&
+                          activeTab === "sellers" && (
+                            <motion.div
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 1 }}
+                              transition={{ duration: 0.2 }}
+                            >
+                              <div className="mt-4 text-gray-700 font-sans">
+                                {faq.answer}
+                              </div>
+                            </motion.div>
+                          )}
+                      </motion.div>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
 
-                      {activeFaqIndex === index && activeTab === "landlords" && (
-                        <div className="mt-4 text-gray-700 font-sans animate-fadeIn">
-                          {faq.answer}
+              {activeTab === "landlords" && (
+                <motion.div
+                  key="landlords"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div className="space-y-6">
+                    {landlordFaqs.map((faq, index) => (
+                      <motion.div
+                        key={faq.id}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: index * 0.1 }}
+                        className={`bg-white rounded-xl shadow-md border p-6 cursor-pointer ${
+                          activeFaqIndex === index && activeTab === "landlords"
+                            ? "border-transparent bg-gradient-to-br from-white to-[#7C1E49]/5 shadow-lg"
+                            : "border-gray-200 hover:border-[#7C1E49]/30"
+                        }`}
+                        onClick={() => setActiveFaqIndex(index)}
+                      >
+                        <div className="flex justify-between items-start">
+                          <h4
+                            className={`text-lg font-serif font-medium ${
+                              activeFaqIndex === index &&
+                              activeTab === "landlords"
+                                ? "text-[#7C1E49]"
+                                : "text-black"
+                            }`}
+                          >
+                            {faq.question}
+                          </h4>
+                          <div
+                            className={`flex items-center justify-center w-8 h-8 rounded-full ${
+                              activeFaqIndex === index &&
+                              activeTab === "landlords"
+                                ? "bg-[#7C1E49] text-white"
+                                : "bg-gray-100 text-gray-500"
+                            }`}
+                          >
+                            <motion.svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="h-4 w-4"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                              animate={{
+                                rotate: activeFaqIndex === index ? 180 : 0,
+                              }}
+                              transition={{ duration: 0.2 }}
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M19 9l-7 7-7-7"
+                              />
+                            </motion.svg>
+                          </div>
                         </div>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
+
+                        {activeFaqIndex === index &&
+                          activeTab === "landlords" && (
+                            <motion.div
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 1 }}
+                              transition={{ duration: 0.2 }}
+                            >
+                              <div className="mt-4 text-gray-700 font-sans">
+                                {faq.answer}
+                              </div>
+                            </motion.div>
+                          )}
+                      </motion.div>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </div>
       </section>

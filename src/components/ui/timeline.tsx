@@ -9,6 +9,7 @@ import Image from "next/image";
 
 interface TimelineEntry {
   title: string;
+  image?: string;
   content: React.ReactNode;
   description?: string; // Optional description for the left side
 }
@@ -19,12 +20,29 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
   const [height, setHeight] = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);
 
+  // Update height calculation to be based on the actual content height
   useEffect(() => {
-    if (ref.current) {
-      const rect = ref.current.getBoundingClientRect();
-      setHeight(rect.height);
-    }
-  }, [ref]);
+    const updateHeight = () => {
+      if (ref.current) {
+        // Get the last timeline section
+        const sections = ref.current.querySelectorAll('.timeline-section');
+        if (sections.length > 0) {
+          const lastSection = sections[sections.length - 1];
+          const lastSectionRect = lastSection.getBoundingClientRect();
+          const refRect = ref.current.getBoundingClientRect();
+          
+          // Calculate height from the top of the container to the bottom of the last section
+          // Subtract a small amount to prevent overflow
+          const calculatedHeight = lastSectionRect.bottom - refRect.top - 40;
+          setHeight(calculatedHeight);
+        }
+      }
+    };
+    
+    updateHeight();
+    window.addEventListener('resize', updateHeight);
+    return () => window.removeEventListener('resize', updateHeight);
+  }, [ref, data]);
 
   // Set up intersection observer to track which section is in view
   useEffect(() => {
@@ -76,15 +94,19 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
       className="w-full bg-white font-sans md:px-10"
       ref={containerRef}
     >
-      <div ref={ref} className="relative max-w-7xl mx-auto pb-20">
+      <div ref={ref} className="relative max-w-7xl mx-auto pb-10">
+        {/* Static background line */}
         <div
           className="absolute md:left-8 left-8 top-0 h-full w-[3px] bg-gray-200"
+          style={{ height: `${height}px` }}
         />
         
+        {/* Animated colored line */}
         <motion.div
           style={{
             height: heightTransform,
             opacity: opacityTransform,
+            maxHeight: `${height}px`,
           }}
           className="absolute md:left-8 left-8 top-0 w-[3px] bg-gradient-to-b from-[#7C1E49] to-[#968F62] z-10"
         />
@@ -95,7 +117,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
             <div
               key={index}
               data-index={index}
-              className="timeline-section flex justify-start pt-16 md:pt-32 md:gap-10 relative"
+              className="timeline-section flex justify-start pt-16 md:pt-24 md:gap-10 relative"
             >
               <div className="sticky flex flex-col md:flex-row z-40 items-center top-1/3 self-start max-w-xs lg:max-w-sm md:w-full h-fit">
                 <div className="h-12 absolute left-3 md:left-3 w-12 rounded-full bg-white shadow-md flex items-center justify-center z-20">
@@ -105,7 +127,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
                   <div className="text-sm uppercase tracking-wider font-medium text-[#7C1E49]">
                     {step}
                   </div>
-                  <h3 className="text-xl md:text-2xl font-serif font-bold text-black">
+                  <h3 className="text-xl md:text-2xl font-serif text-black">
                     {title}
                   </h3>
                   {item.description && (
@@ -116,7 +138,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
                 </div>
               </div>
 
-              <div className="relative pl-20 pr-4 md:pl-4 w-full min-h-[400px]">
+              <div className={`relative pl-20 pr-4 md:pl-4 w-full min-h-[300px] transition-opacity duration-300 ${activeIndex === index ? 'opacity-100' : 'opacity-40'}`}>
                 <div className="md:hidden mb-4">
                   <div className="text-sm uppercase tracking-wider font-medium text-[#7C1E49]">
                     {step}
@@ -131,9 +153,9 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
                   )}
                 </div>
                 <div className="bg-white rounded-lg shadow-md overflow-hidden mb-6">
-                  <div className="relative w-full h-48">
+                  <div className="relative w-full h-72">
                     <Image 
-                      src="/home1.jpg" 
+                      src={item.image || "/home1.jpg"} 
                       alt={item.title} 
                       fill 
                       className="object-cover"

@@ -22,7 +22,7 @@ export default function Footer() {
               © {new Date().getFullYear()} Spotlight Realty
             </p>
             <p className="font-sans text-gray-300 max-w-full md:max-w-1/2">
-            Modernizing real estate with AI technology. Save 75% on commissions with our full-service brokerage.
+            Modernizing real estate with AI technology. Save on commissions with our full-service brokerage.
             </p>
           </div>
 

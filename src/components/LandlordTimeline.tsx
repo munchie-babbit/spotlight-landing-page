@@ -6,22 +6,25 @@ import { Timeline } from "@/components/ui/timeline";
 export default function LandlordTimeline() {
   const landlordJourney = [
     {
-      title: "Step 1: Property Assessment",
-      description: "We evaluate your property's rental potential",
+      title: "Step 1: Intake Form",
+      description: "We assess your property and establish your leasing goals",
+      image: "/onboarding-feature.png",
       content: (
         <div>
           <p className="mb-4 text-sm font-normal text-gray-700 md:text-base">
-            Our AI-powered platform collects information about your rental property and your leasing goals through a simple questionnaire. You&apos;ll receive a rental valuation estimate and personalized leasing strategy.
+            Our AI-powered platform collects information about your property and
+            your leasing goals through a simple questionnaire. You&apos;ll
+            receive an initial valuation estimate.
           </p>
           <div className="mb-6 rounded-lg bg-gray-50 p-4">
             <div className="flex items-center gap-2 text-sm text-gray-700">
               ✓ Property assessment questionnaire
             </div>
             <div className="flex items-center gap-2 text-sm text-gray-700">
-              ✓ AI-generated rental valuation
+              ✓ AI-generated valuation estimate
             </div>
             <div className="flex items-center gap-2 text-sm text-gray-700">
-              ✓ Customized leasing strategy
+              ✓ Customized selling strategy
             </div>
             <div className="flex items-center gap-2 text-sm text-gray-700">
               ✓ Timeline and expectations overview
@@ -31,33 +34,9 @@ export default function LandlordTimeline() {
       ),
     },
     {
-      title: "Step 2: Property Preparation",
-      description: "We optimize your property to attract quality tenants",
-      content: (
-        <div>
-          <p className="mb-4 text-sm font-normal text-gray-700 md:text-base">
-            Our team helps prepare your property for the rental market. This includes professional photography, virtual staging, and recommendations for improvements that can increase your rental income and attract quality tenants.
-          </p>
-          <div className="mb-6 rounded-lg bg-gray-50 p-4">
-            <div className="flex items-center gap-2 text-sm text-gray-700">
-              ✓ Professional photography and videography
-            </div>
-            <div className="flex items-center gap-2 text-sm text-gray-700">
-              ✓ Virtual staging of key rooms
-            </div>
-            <div className="flex items-center gap-2 text-sm text-gray-700">
-              ✓ 3D virtual tour creation
-            </div>
-            <div className="flex items-center gap-2 text-sm text-gray-700">
-              ✓ Pre-listing improvement recommendations
-            </div>
-          </div>
-        </div>
-      ),
-    },
-    {
-      title: "Step 3: Listing Creation",
+      title: "Step 2: Listing Creation",
       description: "Your property is marketed to qualified tenants",
+      image: "/lease-listing.png",
       content: (
         <div>
           <p className="mb-4 text-sm font-normal text-gray-700 md:text-base">
@@ -81,12 +60,13 @@ export default function LandlordTimeline() {
       ),
     },
     {
-      title: "Step 4: Tenant Screening",
-      description: "We find reliable tenants for your property",
+      title: "Step 3: Tenant Screening",
+      description: "We help you select the ideal tenant with AI summarization",
+      image: "/renters.png",
       content: (
         <div>
           <p className="mb-4 text-sm font-normal text-gray-700 md:text-base">
-            Our AI scheduling system manages viewing appointments efficiently, while our comprehensive screening process ensures only qualified tenants visit your property. We handle background checks, credit reports, and income verification.
+            When applications come in, our AI screens each one, comparing rental history, financial stability, and tenant profiles. We then provide you with a summary of the applications and help you select the ideal tenant.
           </p>
           <div className="mb-6 rounded-lg bg-gray-50 p-4">
             <div className="flex items-center gap-2 text-sm text-gray-700">
@@ -106,37 +86,13 @@ export default function LandlordTimeline() {
       ),
     },
     {
-      title: "Step 5: Application Management",
-      description: "We help you select the ideal tenant",
+      title: "Step 4: Lease Generation",
+      description: "We generate the lease and handle the paperwork",
+      image: "/lease.png",
       content: (
         <div>
           <p className="mb-4 text-sm font-normal text-gray-700 md:text-base">
-            When applications come in, our AI system analyzes each one, comparing rental history, financial stability, and tenant profiles. Our team provides guidance on selecting the best tenant for your property.
-          </p>
-          <div className="mb-6 rounded-lg bg-gray-50 p-4">
-            <div className="flex items-center gap-2 text-sm text-gray-700">
-              ✓ Side-by-side application comparison
-            </div>
-            <div className="flex items-center gap-2 text-sm text-gray-700">
-              ✓ Tenant financial qualification assessment
-            </div>
-            <div className="flex items-center gap-2 text-sm text-gray-700">
-              ✓ AI-powered tenant matching
-            </div>
-            <div className="flex items-center gap-2 text-sm text-gray-700">
-              ✓ Risk analysis of each applicant
-            </div>
-          </div>
-        </div>
-      ),
-    },
-    {
-      title: "Step 6: Lease & Management",
-      description: "We handle the paperwork and ongoing management",
-      content: (
-        <div>
-          <p className="mb-4 text-sm font-normal text-gray-700 md:text-base">
-            Once a tenant is selected, our system guides you through the leasing process with digital document management and move-in coordination. We offer ongoing property management services to handle maintenance, rent collection, and tenant communication.
+            Once a tenant is selected, our system guides you through the leasing process with digital document generation and signing.
           </p>
           <div className="mb-6 rounded-lg bg-gray-50 p-4">
             <div className="flex items-center gap-2 text-sm text-gray-700">

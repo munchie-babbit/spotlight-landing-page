@@ -55,9 +55,9 @@ export default function LandlordsPage() {
                   />
                 </svg>
               </div>
-              <h3 className="text-xl font-serif mb-3">Smart Tenant Matching</h3>
+              <h3 className="text-xl font-serif mb-3">Save on costs</h3>
               <p className="text-gray-600 font-sans">
-                Our AI matches your property with qualified tenants based on their preferences and your requirements, reducing vacancy periods.
+                Our AI-powered platform helps you find quality tenants while charging 4% instead of a traditional 10% on your rental income.
               </p>
             </div>
 
