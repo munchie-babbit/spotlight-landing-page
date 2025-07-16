@@ -1309,7 +1309,7 @@ export default function HomePage() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.5, duration: 0.5 }}
                   >
-                    AI Screening & Document Review
+                    Applicant Screening & Document Review
                   </motion.h3>
                   <motion.p 
                     className="text-gray-600 font-sans"
@@ -1317,7 +1317,7 @@ export default function HomePage() {
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.6, duration: 0.5 }}
                   >
-                    Our AI automatically screens potential buyers and tenants, verifying their financial qualifications and reviewing documents to save you time and reduce risk.
+                    We screens potential buyers and tenants, verifying their financial qualifications and reviewing documents to save you time and reduce risk.
                   </motion.p>
                 </motion.div>
             </div>
