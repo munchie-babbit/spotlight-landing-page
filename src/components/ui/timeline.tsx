@@ -158,7 +158,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
                       src={item.image || "/home1.jpg"} 
                       alt={item.title} 
                       fill 
-                      className="object-cover"
+                      className="object-cover border border-gray-200"
                     />
                   </div>
                   <div className="p-6">

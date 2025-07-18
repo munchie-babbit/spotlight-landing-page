@@ -121,6 +121,16 @@ export default function HeroSection({
     if (disableCarousel) return;
     setCurrentIndex(index);
   };
+  
+  const goToPrevSlide = () => {
+    if (disableCarousel || currentIndex === 0) return;
+    setCurrentIndex((prevIndex) => prevIndex - 1);
+  };
+  
+  const goToNextSlide = () => {
+    if (disableCarousel || currentIndex === properties.length - 1) return;
+    setCurrentIndex((prevIndex) => prevIndex + 1);
+  };
 
   // Animation variants
   const fadeIn: Variants = {
@@ -234,6 +244,19 @@ export default function HeroSection({
       >
         <div className="max-w-3xl flex flex-col gap-12">
           <motion.div className="flex flex-col gap-4">
+            {!disableCarousel && (
+              <motion.div 
+                className="mb-4"
+                variants={slideUp}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.5 }}
+              >
+                <span className="bg-black/40 backdrop-blur-sm text-white text-sm font-sans px-4 py-1.5 rounded-full inline-flex items-center">
+                  Backed by Y Combinator
+                </span>
+              </motion.div>
+            )}
             <motion.h1 
               className="text-4xl md:text-6xl font-serif text-white leading-normal md:leading-tight"
               variants={slideUp}
@@ -266,61 +289,94 @@ export default function HeroSection({
 
       {/* Property information */}
       {!disableCarousel && (
-        <motion.div 
-          className="container absolute bottom-12 left-0 right-0 flex justify-between items-center px-4 sm:px-12"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1, duration: 0.6 }}
-        >
+        <>
+          {/* Navigation Chevrons */}
+          {currentIndex > 0 && (
+            <motion.button
+              className="absolute left-2 sm:left-8 md:left-12 lg:left-16 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white w-8 h-8 sm:w-12 sm:h-12 rounded-full hidden sm:flex items-center justify-center z-20 transition-colors shadow-md"
+              onClick={goToPrevSlide}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.5, duration: 0.3 }}
+              aria-label="Previous slide"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </motion.button>
+          )}
+          
+          {currentIndex < properties.length - 1 && (
+            <motion.button
+              className="absolute right-2 sm:right-8 md:right-12 lg:right-16 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white w-8 h-8 sm:w-12 sm:h-12 rounded-full hidden sm:flex items-center justify-center z-20 transition-colors shadow-md"
+              onClick={goToNextSlide}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.5, duration: 0.3 }}
+              aria-label="Next slide"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </motion.button>
+          )}
+          
           <motion.div 
-            className="text-white max-w-3xl flex flex-row"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 1.2, duration: 0.5 }}
+            className="container absolute bottom-12 left-0 right-0 flex justify-between items-center px-4 sm:px-12"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1, duration: 0.6 }}
           >
-            <p className="text-sm tracking-wider font-sans">
-              {currentProperty.location}
-            </p>
-          </motion.div>
+            <motion.div 
+              className="text-white max-w-3xl flex flex-row"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 1.2, duration: 0.5 }}
+            >
+              <p className="text-sm tracking-wider font-sans">
+                {currentProperty.location}
+              </p>
+            </motion.div>
 
-          <motion.div 
-            className="flex items-center space-x-4"
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 1.2, duration: 0.5 }}
-          >
-            {/* Navigation Rectangles with Progress Bar */}
-            <div className="hidden md:flex space-x-2">
-              {properties.map((_, index) => (
-                <motion.div
-                  key={index}
-                  className="relative cursor-pointer"
-                  onClick={() => goToSlide(index)}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 1.3 + index * 0.1, duration: 0.4 }}
-                  whileHover={{ scale: 1.1 }}
-                >
-                  <div
-                    className={`w-16 h-1.5 rounded-full ${
-                      index === currentIndex ? "bg-white/40" : "bg-white/30"
-                    }`}
-                    aria-label={`Go to slide ${index + 1}`}
-                  />
-                  {index === currentIndex && (
-                    <motion.div
-                      className="absolute top-0 left-0 h-1.5 bg-white/70 rounded-full"
-                      style={{ width: `${progress}%` }}
-                      initial={{ width: "0%" }}
-                      animate={{ width: `${progress}%` }}
-                      transition={{ duration: 0.1, ease: "linear" }}
+            <motion.div 
+              className="flex items-center space-x-4"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 1.2, duration: 0.5 }}
+            >
+              {/* Navigation Rectangles with Progress Bar */}
+              <div className="hidden md:flex space-x-2">
+                {properties.map((_, index) => (
+                  <motion.div
+                    key={index}
+                    className="relative cursor-pointer"
+                    onClick={() => goToSlide(index)}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 1.3 + index * 0.1, duration: 0.4 }}
+                    whileHover={{ scale: 1.1 }}
+                  >
+                    <div
+                      className={`w-16 h-1.5 rounded-full ${
+                        index === currentIndex ? "bg-white/40" : "bg-white/30"
+                      }`}
+                      aria-label={`Go to slide ${index + 1}`}
                     />
-                  )}
-                </motion.div>
-              ))}
-            </div>
+                    {index === currentIndex && (
+                      <motion.div
+                        className="absolute top-0 left-0 h-1.5 bg-white/70 rounded-full"
+                        style={{ width: `${progress}%` }}
+                        initial={{ width: "0%" }}
+                        animate={{ width: `${progress}%` }}
+                        transition={{ duration: 0.1, ease: "linear" }}
+                      />
+                    )}
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
           </motion.div>
-        </motion.div>
+        </>
       )}
     </motion.div>
   );
