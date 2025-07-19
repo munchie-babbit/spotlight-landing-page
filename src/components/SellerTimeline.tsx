@@ -194,7 +194,7 @@ export default function SellerTimeline() {
             Our AI-powered platform helps you sell your home for more, with lower fees and a streamlined process.
           </p>
         </div>
-        <div className="bg-white p-6 md:p-10 rounded-lg">
+        <div className="bg-white py-4 px-2 sm:p-6 md:p-10 rounded-lg">
           <div>
             <Timeline data={sellerJourney} />
           </div>

@@ -97,7 +97,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
       <div ref={ref} className="relative max-w-7xl mx-auto pb-10">
         {/* Static background line */}
         <div
-          className="absolute md:left-8 left-8 top-0 h-full w-[3px] bg-gray-200"
+          className="absolute md:left-8 left-4 top-0 h-full w-[3px] bg-gray-200"
           style={{ height: `${height}px` }}
         />
         
@@ -108,7 +108,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
             opacity: opacityTransform,
             maxHeight: `${height}px`,
           }}
-          className="absolute md:left-8 left-8 top-0 w-[3px] bg-gradient-to-b from-[#7C1E49] to-[#968F62] z-10"
+          className="absolute md:left-8 left-4 top-0 w-[3px] bg-gradient-to-b from-[#7C1E49] to-[#968F62] z-10"
         />
         
         {data.map((item, index) => {
@@ -120,8 +120,8 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
               className="timeline-section flex justify-start pt-16 md:pt-24 md:gap-10 relative"
             >
               <div className="sticky flex flex-col md:flex-row z-40 items-center top-1/3 self-start max-w-xs lg:max-w-sm md:w-full h-fit">
-                <div className="h-12 absolute left-3 md:left-3 w-12 rounded-full bg-white shadow-md flex items-center justify-center z-20">
-                  <div className="h-6 w-6 rounded-full bg-[#7C1E49]/20 border-2 border-[#7C1E49]" />
+                <div className="h-8 w-8 md:h-12 md:w-12 absolute left-[2px] md:left-3 rounded-full bg-white shadow-md flex items-center justify-center z-20">
+                  <div className="h-4 w-4 md:h-6 md:w-6 rounded-full bg-[#7C1E49]/20 border-2 border-[#7C1E49]" />
                 </div>
                 <div className={`hidden md:block md:pl-20 transition-opacity duration-300 ${activeIndex === index ? 'opacity-100' : 'opacity-40'}`}>
                   <div className="text-sm uppercase tracking-wider font-medium text-[#7C1E49]">
@@ -138,7 +138,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
                 </div>
               </div>
 
-              <div className={`relative pl-20 pr-4 md:pl-4 w-full min-h-[300px] transition-opacity duration-300 ${activeIndex === index ? 'opacity-100' : 'opacity-40'}`}>
+              <div className={`relative pl-12 md:pl-20 pr-4  w-full min-h-[300px] transition-opacity duration-300 ${activeIndex === index ? 'opacity-100' : 'opacity-40'}`}>
                 <div className="md:hidden mb-4">
                   <div className="text-sm uppercase tracking-wider font-medium text-[#7C1E49]">
                     {step}
@@ -153,12 +153,13 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
                   )}
                 </div>
                 <div className="bg-white rounded-lg shadow-md overflow-hidden mb-6">
-                  <div className="relative w-full h-72">
+                  <div className="relative w-full h-48 sm:h-56 md:h-64 lg:h-72">
                     <Image 
                       src={item.image || "/home1.jpg"} 
                       alt={item.title} 
                       fill 
-                      className="object-cover border border-gray-200"
+                      className="object-cover sm:object-cover border border-gray-200"
+                      sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
                     />
                   </div>
                   <div className="p-6">

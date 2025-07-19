@@ -129,7 +129,7 @@ export default function LandlordTimeline() {
             Our AI-powered platform helps you find quality tenants and manage your properties with minimal effort.
           </p>
         </div>
-        <div className="bg-white p-6 md:p-10 rounded-lg">
+        <div className="bg-white py-4 px-2 sm:p-6 md:p-10 rounded-lg">
           <div>
             <Timeline data={landlordJourney} />
           </div>
