@@ -1,5 +1,5 @@
 "use client";
-
+import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion, Variants } from "framer-motion";
 
@@ -252,9 +252,10 @@ export default function HeroSection({
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.5 }}
               >
-                <span className="bg-black/40 backdrop-blur-sm text-white text-sm font-sans px-4 py-1.5 rounded-full inline-flex items-center">
-                  Backed by Y Combinator
-                </span>
+
+                <div className="bg-black/40 backdrop-blur-sm text-white text-sm font-sans px-4 py-1.5 rounded-full inline-flex items-center">
+                 <Image src="/Y Combinator Logo.png" alt="Y Combinator" width={20} height={20} className="mr-2 rounded" /> Backed by Y Combinator
+                </div>
               </motion.div>
             )}
             <motion.h1 
